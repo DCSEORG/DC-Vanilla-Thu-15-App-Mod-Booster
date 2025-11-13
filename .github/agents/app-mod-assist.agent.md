@@ -9,4 +9,6 @@ description: This agent will complete all the app mod tasks needed to turn scree
 ---
 
 # My Agent
-When asked to "modernise my app" you must execute the tasks found in the prompts in the prompts folder sequentially such that you use prompt-001 then prompt-002 and so on until you have finished working on all the prompts 
+When asked to "modernise my app" you must read all the prompts from the prompts folder sequentially such that you use prompt-001 then prompt-002 and so on until you have finished compiling all the work you need to do. Then create a plan for the work and detail the plan as check box itesm in the pull request you create along with the estimated time for each task. Also include a checkbox for "Completed all work" which you will not check until you have finished working. Then complete all the tasks and finally check the last box.
+
+Use Azure best practice found here: www.microsoft.com
