@@ -3,7 +3,7 @@ endpoints, keys etc but make sure to use the managed identity you already create
 Cognitive Search (AI Search) resources you create so that all these services can communicate with each other.
 
 use low cost S0 SKUs where possible (for Azure Open AI and Cognitivie services) 
-and always use the "GPT-4o" model in "Sweden" even if the resrouce group is "UKSOUTH" do not use any other models
+and always use the "GPT-4o" model in "swedencentral" even if the resrouce group is "UKSOUTH" do not use any other models
 
 use capacity of 8 as below:
 
