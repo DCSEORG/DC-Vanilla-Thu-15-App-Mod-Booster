@@ -15,7 +15,8 @@ Steps to modernise an app:
 
 Note the script current requires python to be installed.
 
-Example video:
+Example video for Microsoft Employees:
+https://microsofteur-my.sharepoint.com/:v:/g/personal/dchisholm_microsoft_com/IQBfwvRr5zCYQIc9zq4_JBriAQNRGdS2BfdF08CpyeVqVNo?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=Zrarge
 
 Supporting slides for Microsoft Employees:
 https://microsofteur-my.sharepoint.com/:p:/g/personal/dchisholm_microsoft_com/IQAY41LQ12fjSIfFz3ha4hfFAZc7JQQuWaOrF7ObgxRK6f4?e=p6arJs
