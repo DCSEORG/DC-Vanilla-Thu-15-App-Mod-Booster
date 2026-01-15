@@ -1,12 +1,16 @@
 {
-  "name": "Minimal Python",
-  "image": "mcr.microsoft.com/devcontainers/python:3.11",  
-  "features": {},
+  "name": "Minimal Python + Azure CLI",
+  "image": "mcr.microsoft.com/devcontainers/python:3.11",
+  "features": {
+    "ghcr.io/devcontainers/features/azure-cli:1": {}
+  },
   "customizations": {},
   "settings": {
     "terminal.integrated.shell.linux": "/bin/bash"
   },
-  "extensions": [],
+  "extensions": [
+    "ms-azuretools.vscode-azurecli"
+  ],
   "forwardPorts": [],
   "postCreateCommand": "pip install --upgrade pip"
 }
