@@ -1,0 +1,105 @@
+@page
+@model ApproveExpensesModel
+@{
+    ViewData["Title"] = "Approve Expenses";
+}
+
+<div class="page-header">
+    <h1>Approve Expenses</h1>
+    <a href="/" class="btn btn-secondary">← Back to List</a>
+</div>
+
+@if (!string.IsNullOrEmpty(Model.ErrorMessage))
+{
+    <div class="error-banner">
+        <strong>⚠️ Error:</strong> @Model.ErrorMessage
+    </div>
+}
+
+@if (!string.IsNullOrEmpty(Model.SuccessMessage))
+{
+    <div class="success-banner">
+        <strong>✓ Success:</strong> @Model.SuccessMessage
+    </div>
+}
+
+<div class="form-group" style="max-width: 400px; margin-bottom: 30px;">
+    <label>Select Reviewer (Manager)</label>
+    <select id="reviewerId" class="form-control">
+        <option value="">Select Manager</option>
+        @foreach (var user in Model.Users.Where(u => u.RoleName == "Manager"))
+        {
+            <option value="@user.UserId">@user.UserName</option>
+        }
+    </select>
+</div>
+
+<h2>Pending Expenses</h2>
+
+<div class="expense-grid">
+    @if (Model.PendingExpenses.Any())
+    {
+        @foreach (var expense in Model.PendingExpenses)
+        {
+            <div class="expense-card">
+                <div class="expense-header">
+                    <div class="expense-category">@expense.CategoryName</div>
+                    <div class="expense-status status-submitted">@expense.StatusName</div>
+                </div>
+                
+                <div class="expense-amount">@expense.FormattedAmount</div>
+                
+                <div class="expense-details">
+                    <div class="expense-date">📅 @expense.ExpenseDate.ToString("dd MMM yyyy")</div>
+                    <div class="expense-user">👤 @expense.UserName</div>
+                </div>
+                
+                <div class="expense-description">@expense.Description</div>
+                
+                <div class="expense-submitted">
+                    Submitted: @expense.SubmittedAt?.ToString("dd MMM yyyy HH:mm")
+                </div>
+                
+                <div class="expense-actions">
+                    <form method="post" asp-page-handler="Approve" asp-route-id="@expense.ExpenseId" style="display: inline;">
+                        <button type="submit" class="btn btn-approve" onclick="return validateReviewer('approve');">
+                            ✓ Approve
+                        </button>
+                    </form>
+                    <form method="post" asp-page-handler="Reject" asp-route-id="@expense.ExpenseId" style="display: inline;">
+                        <button type="submit" class="btn btn-reject" onclick="return validateReviewer('reject');">
+                            ✗ Reject
+                        </button>
+                    </form>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <div class="no-expenses">
+            <p>No pending expenses to review.</p>
+        </div>
+    }
+</div>
+
+@section Scripts {
+    <script>
+        function validateReviewer(action) {
+            const reviewerId = document.getElementById('reviewerId').value;
+            if (!reviewerId) {
+                alert('Please select a reviewer (manager) before ' + action + 'ing expenses.');
+                return false;
+            }
+            
+            const form = event.target.closest('form');
+            const input = document.createElement('input');
+            input.type = 'hidden';
+            input.name = 'reviewerId';
+            input.value = reviewerId;
+            form.appendChild(input);
+            
+            return confirm('Are you sure you want to ' + action + ' this expense?');
+        }
+    </script>
+}

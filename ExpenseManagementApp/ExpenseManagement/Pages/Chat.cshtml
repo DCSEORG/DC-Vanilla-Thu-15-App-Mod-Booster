@@ -1,0 +1,73 @@
+@page
+@model ChatModel
+@{
+    ViewData["Title"] = "Chat Assistant";
+}
+
+<div class="page-header">
+    <h1>💬 Chat Assistant</h1>
+    <a href="/" class="btn btn-secondary">← Back to List</a>
+</div>
+
+<div class="chat-container">
+    <div class="chat-messages" id="chatMessages">
+        @if (Model.Messages.Any())
+        {
+            @foreach (var message in Model.Messages)
+            {
+                <div class="chat-message @(message.IsUser ? "user-message" : "assistant-message")">
+                    <div class="message-header">
+                        @(message.IsUser ? "You" : "Assistant")
+                    </div>
+                    <div class="message-content">
+                        @message.Content
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <div class="chat-welcome">
+                <h3>Welcome to the Expense Management Assistant!</h3>
+                <p>I can help you with:</p>
+                <ul>
+                    <li>Getting information about expenses</li>
+                    <li>Filtering expenses by status, category, or user</li>
+                    <li>Creating new expenses</li>
+                    <li>Approving or rejecting expenses</li>
+                </ul>
+                <p>Ask me anything about your expenses!</p>
+            </div>
+        }
+    </div>
+
+    <div class="chat-input-container">
+        <form method="post" id="chatForm">
+            <div class="chat-input-group">
+                <input type="text" 
+                       asp-for="UserMessage" 
+                       class="chat-input" 
+                       placeholder="Type your message here..."
+                       autocomplete="off"
+                       required />
+                <button type="submit" class="btn btn-chat-send">Send</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const chatMessages = document.getElementById('chatMessages');
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+            
+            const form = document.getElementById('chatForm');
+            form.addEventListener('submit', function() {
+                setTimeout(function() {
+                    chatMessages.scrollTop = chatMessages.scrollHeight;
+                }, 100);
+            });
+        });
+    </script>
+}
